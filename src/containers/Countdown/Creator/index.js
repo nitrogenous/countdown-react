@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './index.scss';
 
 const Creator = ({setTimerValue}) => {
   const [secondsOfOptions, setSecondsOfOptions] = useState({hours: 0, minutes: 0, seconds: 0});
@@ -35,16 +36,16 @@ const Creator = ({setTimerValue}) => {
   };  
 
   return (
-    <div>
-      <label for="hours">Hours:</label>
+    <div className="countdown-creator">
+      <label htmlFor="hours">Hours:</label>
       <select id="hours" onChange={e => convertOptionsToSeconds(e.target.value, 'hours')} >
         {createTimerOption(24)}
       </select>
-      <label for="minutes">Minutes:</label>
+      <label htmlFor="minutes">Minutes:</label>
       <select id="minutes" onChange={e => convertOptionsToSeconds(e.target.value, 'minutes')} >
         {createTimerOption(60)}
       </select>
-      <label for="seconds">Seconds:</label>
+      <label htmlFor="seconds">Seconds:</label>
       <select id="seconds" onChange={e => convertOptionsToSeconds(e.target.value, 'seconds')} >
         {createTimerOption(60)}
       </select>

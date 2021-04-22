@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 
 const CountdownTimer = function (startingPoint, callback) {
-  const isStartingpointValid = Number.isInteger(startingPoint);
   const isCallbackValid = callback instanceof Function;
+  const isStartingpointValid = Number.isInteger(startingPoint) && startingPoint > 0;
   const [seconds, setSeconds] = useState(isStartingpointValid ? startingPoint : 0);
   const [timer, setTimer] = useState(null);
   const isTimerFinished = seconds <= 0;
@@ -35,7 +35,7 @@ const CountdownTimer = function (startingPoint, callback) {
       stop();
       isCallbackValid && callback();
     }
-  }, [isTimerFinished, stop, isCallbackValid, callback]);
+  }, [isTimerFinished, hasTimer, stop, isCallbackValid, callback]);
 
   return {remaining, start, stop, updateTimerValue};
 };

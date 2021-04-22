@@ -1,0 +1,17 @@
+.countdown-preview {
+  width: 100%;
+  display: flex;
+  min-height: 25em;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  .remaining-time {
+    font-size: 84px;
+    margin-bottom: 25px;
+  }
+
+  button {
+    font-size: 24px !important;
+  }
+}

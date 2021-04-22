@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'; 
 import CountdownTimer from '../../../utils/CountdownTimer';
+import './index.scss';
 
-const Preview = ({timerValue, countdownFinishAlert}) => {
+const Preview = ({timerValue, setIsFinished, countdownFinishAlert}) => {
   const [time, setTime] = useState('00:00:00');
   const timer = new CountdownTimer(timerValue, countdownFinishAlert);
-
+  
   const secondsToTime = (duration) => {
     var sec_num = parseInt(duration, 10);
     var hours   = Math.floor(sec_num / 3600);
@@ -24,16 +25,19 @@ const Preview = ({timerValue, countdownFinishAlert}) => {
   }, [timerValue]);
 
   useEffect(() => {
-    setTime(secondsToTime(timer.remaining()))
-  }, [timer]);
+    setTime(secondsToTime(timer.remaining()));
+    setIsFinished(timer.remaining() === 0);
+  }, [timer, setIsFinished]);
 
   return (
-    <div>
-      <div>
+    <div className="countdown-preview">
+      <span className="remaining-time">
         {time}
+      </span>
+      <div className="control-buttons">
+        <button onClick={timer.start}>Start</button>
+        <button onClick={timer.stop}>Stop</button>
       </div>
-      <button onClick={timer.start}>Start</button>
-      <button onClick={timer.stop}>Stop</button>
     </div>
   );
 };
